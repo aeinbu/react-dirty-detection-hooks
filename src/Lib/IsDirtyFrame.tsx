@@ -70,6 +70,9 @@ export const useStateWithIsDirtyTracking = (name: string, incomingValue: string)
 	const [, setIsDirty] = useState(false)
 
 	const dirtyContext = useContext(IsDirtyContext)
+	if (dirtyContext === undefined) {
+		return [value, setValue]
+	}
 
 	const setFn = (value: string) => {
 		setValue(value)
@@ -84,6 +87,14 @@ export const useStateWithIsDirtyTracking = (name: string, incomingValue: string)
 
 export const useIsDirtyStateConsumer = () => {
 	const dirtyContext = useContext(IsDirtyContext)
-	const isDirty = useSubscribedState(dirtyContext.observable, () => dirtyContext.isDirty)
+	const observable = (dirtyContext !== undefined)
+		? dirtyContext.observable
+		: new Subject()
+
+	const action = (dirtyContext !== undefined)
+		? () => dirtyContext.isDirty
+		: () => true
+
+	const isDirty = useSubscribedState(observable, action)
 	return isDirty
 }

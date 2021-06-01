@@ -9,7 +9,6 @@ export const MyForm = () => {
 
 	console.log("MyForm rendering")
 	return (
-		<IsDirtyFrame>
 			<div>
 				<header>
 					Da form!
@@ -25,7 +24,6 @@ export const MyForm = () => {
 
 				<MyButton />
 			</div >
-		</IsDirtyFrame>
 	)
 }
 
