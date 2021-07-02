@@ -1,5 +1,5 @@
 // import React from 'react'
-import { IsDirtyFrame, useIsDirtyStateConsumer, useStateWithIsDirtyTracking } from './Lib/IsDirtyFrame'
+import { useIsDirtyStateConsumer, useStateWithIsDirtyTracking } from './Lib/IsDirtyFrame'
 
 
 export const MyForm = () => {
@@ -22,7 +22,8 @@ export const MyForm = () => {
 					/>
 				)}
 
-				<MyButton />
+				<MySaveButton />
+				<MyCloseButton />
 			</div >
 	)
 }
@@ -45,13 +46,27 @@ const MyInput = ({ value: incomingValue, name }: MyInputProps) => {
 }
 
 
-const MyButton = () => {
+const MySaveButton = () => {
 	const isDirty = useIsDirtyStateConsumer()
 
-	console.log("MyButton rendering", { isDirty })
+//TODO: Save should reset the dirtycontext and all initialvalues - or load new initialvalues into the inputs
+
+	console.log("MySaveButton rendering", { isDirty })
 	return (
 		<button disabled={!isDirty}>
 			Save {isDirty ? "(The form is dirty)" : "(The form is not dirty)"}
+		</button>
+	)
+}
+
+
+const MyCloseButton = () => {
+	const isDirty = useIsDirtyStateConsumer()
+
+	console.log("MyCloseButton rendering", { isDirty })
+	return (
+		<button disabled={!isDirty}>
+			Close {isDirty ? "(The form is dirty)" : "(The form is not dirty)"}
 		</button>
 	)
 }
