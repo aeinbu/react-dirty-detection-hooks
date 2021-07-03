@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './App.css';
-import { IsDirtyFrame } from './Lib/IsDirtyFrame';
-import {MyForm} from './MyForm'
+import React from 'react'
+import './App.css'
+import { IsDirtyFrame } from './Lib/IsDirtyFrame'
+import {MyForm} from './My/MyForm'
 
 export const App = () => {
 	return (
@@ -10,17 +10,17 @@ export const App = () => {
 			<hr />
 			<IsDirtyFrame>
 				With dirty detection
-				<MyForm />
+				<MyForm incomingData={["this", "is", "it"]}/>
 			</IsDirtyFrame>
 			<hr />
 			<IsDirtyFrame>
 				With dirty detection
-				<MyForm />
+				<MyForm incomingData={["this", "is", "more", "of", "it"]}/>
 			</IsDirtyFrame>
 			<hr />
 			Without dirty detection
-			<MyForm />
+			<MyForm incomingData={["this", "is", "the", "last", "one"]}/>
 			<hr />
 		</div>
-	);
+	)
 }
